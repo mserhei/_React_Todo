@@ -1,0 +1,16 @@
+.content_add_task{
+    border-bottom: 1px solid #fff;
+    padding: 2rem;
+}
+
+input{
+    display: block;
+    margin-top: 1rem;
+    padding: .5rem;
+    border-radius: 5px;
+    border: 1px solid transparent;
+}
+
+button{
+    margin-right: 1rem;
+}

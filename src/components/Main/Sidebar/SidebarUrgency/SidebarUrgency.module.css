@@ -1,0 +1,16 @@
+.sidebar_list {
+    padding-bottom: 2rem;
+}
+
+.p{
+    padding-bottom: 1rem;
+    font-size: 20px;
+    font-style: italic;
+}
+
+.li{
+    font-size: 16px;
+    font-style: italic;
+    padding: 10px 0px 0px 10px;
+    color: #fff;
+}
