@@ -1,16 +1,15 @@
-import React from "react";
-import SidebarUrgency from "../SidebarUrgency/SidebarUrgency";
+import React,{useState} from "react";
+import SidebarStateItem from './SidebarStateItem/SidebarStateItem'
 
 import s from './SidebarState.module.css';
 
-console.log(s);
+function SidebarState({itemsState}) {
 
-function SidebarState() {
   return (
     <div className={s.sidebar_list}>
       <p className={s.p}>State:</p>
       <ul>
-        <li className={s.li}>there is style for li</li> 
+        {itemsState.map((itemState) => <SidebarStateItem itemState={itemState} key={itemState.id}/>)}
       </ul>
     </div>
   );

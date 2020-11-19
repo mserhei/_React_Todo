@@ -1,0 +1,13 @@
+.input_state {
+    display: none;
+}
+
+.label_state {
+    cursor: pointer;
+    display: block;
+    padding-left: 1rem;
+    margin-top: .5rem;
+    color: #fff;
+    font-style: italic;
+}
+

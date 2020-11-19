@@ -5,11 +5,11 @@ import SidebarUrgency from './SidebarUrgency/SidebarUrgency';
 
 import s from './Sidebar.module.css';
 
-function Sidebar () {
+function Sidebar ({itemsState, itemsUrgency}) {
     return (
         <div className={s.sidebar}>
-            <SidebarState />
-            <SidebarUrgency />
+            <SidebarState itemsState={itemsState}/>
+            <SidebarUrgency itemsUrgency={itemsUrgency}/>
             <SidebarButton />
         </div>
     )
