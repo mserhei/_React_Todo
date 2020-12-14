@@ -1,0 +1,21 @@
+.tiwb__input {
+    border: none;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    padding: 5px 15px;
+}
+
+.tiwb__input::placeholder {
+    color: #cbc9c9;
+    font-style: italic;
+}
+
+.tiwb__button {
+    border: none;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 5px 15px;
+    background-color:#19b100;
+    color: #fff;
+    font-style: italic;
+}

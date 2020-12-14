@@ -1,12 +1,12 @@
 import React from 'react';
-import ContentAddTask from './ContentAddTask/ContentAddTask';
+import ContentTextInputWithButton from './ContentTextInputWithButton/ContentTextInputWithButton'
 import ContentTasks from './ContentTasks/ContentTasks';
 
-function Content (tasks) {
+function Content () {
     return (
         <div>
-            <ContentAddTask />
-            <ContentTasks tasks={tasks}/>
+            <ContentTextInputWithButton/>
+            <ContentTasks />
         </div>
     )
 }

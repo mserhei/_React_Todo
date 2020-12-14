@@ -1,10 +1,11 @@
 import React from "react";
+import {connect} from 'react-redux';
 
 import ContentTask from "./ContentTask/ContentTask";
 import s from "./ContentTasks.module.css";
 
-function ContentTasks({ tasks }) {
-  if (!tasks.tasks.length) {
+const ContentTasks = ({ allTasks }) => {
+  if (!allTasks.length) {
     return (
       <div className={s.content_tasks}>
         <p>No tasks</p>
@@ -14,11 +15,17 @@ function ContentTasks({ tasks }) {
 
   return (
     <div className={s.content_tasks}>
-      {tasks.tasks.map((task) => (
+      {allTasks.map((task) => (
         <ContentTask task={task} key={task.id} />
       ))}
     </div>
   );
 }
 
-export default ContentTasks;
+const mapStateToProps = state => {
+  return {
+    allTasks: state.tasks.tasks
+  }
+}
+
+export default connect(mapStateToProps, null)(ContentTasks) ;

@@ -5,7 +5,7 @@ import s from './Footer.module.css';
 function Footer() {
   return (
     <footer className={s.footer}>
-      <p>2020</p>
+      <p>Serhei Mikhailov 2020</p>
     </footer>
   );
 }

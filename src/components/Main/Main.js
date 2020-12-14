@@ -1,16 +1,16 @@
-import React,{useState} from 'react';
+import React from 'react';
 
 import Sidebar from './Sidebar/Sidebar';
 import Content from './Content/Content';
 
 import s from './Main.module.css';
 
-function Main ({tasks, itemsState, itemsUrgency}) {
+function Main () {
 
     return (
         <main className={s.main}>
-            <Sidebar itemsState={itemsState} itemsUrgency={itemsUrgency}/>
-            <Content tasks={tasks}/>
+            <Sidebar/>
+            <Content/>
         </main>
     )
 }

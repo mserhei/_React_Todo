@@ -1,52 +1,41 @@
 .task_block {
-    padding: 1rem 0rem;
-    border-bottom: 1px solid #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+    border-radius: 20px;
+    border: 3px solid silver;
+    margin-top: 10px;
 }
 
-.task_block:last-of-type {
-    border-bottom: none;
-}
-
-.task_title {
-    padding: .5rem;
-}
-
-.task_title_p {
-    font-size: 20px;
-    font-style: italic;
-    color: #fff;
-}
-
-.task_button {
-    background-color: transparent;
-    padding: .3rem 1rem;
-    margin-right: .5rem;
-    border-radius: 7px;
-}
-
-.completed0, .deleted0, .add_description, .change_description {
-    color: #a6a6a6;
-    border: 1px solid #a6a6a6;
-
-}
 
 .completed1 {
-    color: green;
-    border: 1px solid green;
+    border: 3px solid green;
+}
+.task_label {
+    padding: 0px 20px;
+    font-size: 20px;
 }
 
-.deleted1 {
-    color: red;
-    border: 1px solid red;
-}
-
-.input_description {
-    display: block;
-    width: 95%;
-    font-size: 16px;
-    font-style: italic;
-    background-color: transparent;
+.task_title_span {
     color: #fff;
+}
+
+/* ACTION BUTTONS */
+
+.action_button {
     border: none;
-    margin-top: .5rem;
+    padding: 5px 10px;
+    border-right: 1px solid #dddddd;
+}
+
+.action_button:last-of-type {
+    border-right: none;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.action_button:first-of-type {
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
 }
