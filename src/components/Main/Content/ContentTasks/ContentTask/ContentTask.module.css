@@ -6,12 +6,13 @@
     border-radius: 20px;
     border: 3px solid silver;
     margin-top: 10px;
+    transition: all 1s ease;
 }
 
-
-.completed1 {
-    border: 3px solid green;
+.task_block:hover {
+    background-color: #565656;
 }
+
 .task_label {
     padding: 0px 20px;
     font-size: 20px;
@@ -20,6 +21,36 @@
 .task_title_span {
     color: #fff;
 }
+
+/* IS COMPLETED BLOCK */
+
+.completed1 {
+    border: 3px solid #87ff74;
+}
+
+/* IS COMPLETED BUTTON */
+
+.completed_button {
+    border-radius: 50%;
+    border: none;
+    background-color: transparent;
+
+}
+
+.completedButton1 {
+    background-color: #87ff74;
+}
+
+.completed_input0 {
+    font-size: 30px;
+    color: #dddddd;
+}
+
+.completed_input1 {
+    font-size: 30px;
+    color: #87ff74;
+}
+
 
 /* ACTION BUTTONS */
 

@@ -24,7 +24,10 @@
 }
 
 
-
+.category_name_block {
+    cursor: pointer;
+    max-width: 250px;
+}
 
 .category_button {
     border: none;
@@ -43,10 +46,6 @@
     border-bottom-left-radius: 5px;
     border-top-left-radius: 5px;
 }
-
-
-
-
 
 .display_flex {
     display: flex;

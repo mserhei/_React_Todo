@@ -1,0 +1,88 @@
+.modal_form {
+    font-family: 'Courgette', cursive;
+}
+
+/* FORM BUTTONS */
+
+.close_modal_button {
+    padding: 3px 15px;
+    border: 1px solid #fff;
+    border-radius: 8px;
+    background-color: transparent;
+    color: #fff;
+    margin-right: 15px;
+    font-family: 'Courgette', cursive;
+}
+
+.submit_modal_button {
+    padding: 3px 15px;
+    border: 1px solid #fff;
+    border-radius: 8px;
+    background-color: transparent;
+    color: #fff;
+    font-family: 'Courgette', cursive;
+}
+
+/* TASK TITLE EDITING */
+
+.new_title_block {
+    margin-top: 70px;
+}
+
+.new_title_p{
+    font-size: 20px;
+}
+
+.new_task_input {
+    font-family: 'Courgette', cursive;
+    display: block;
+    margin-top: 10px;
+    width: 400px;
+    border: 1px solid #fff;
+    background-color: transparent;
+    color: #fff;
+    border-radius: 8px;
+    padding: 5px 10px;
+}
+
+.message_no_title {
+    display: block;
+    margin-top: 10px;
+    color: red;
+}
+
+/* CHECKBOX DONE_TASK */
+
+.task_done_block {
+    margin-top: 50px;
+}
+
+.task_done_block input{
+    margin-right: 10px;
+}
+
+.task_done_block span{
+    font-size: 20px;
+}
+
+/* TASK DESCRIPTION EDITING */
+
+.task_description {
+    margin-top: 50px;
+}
+
+.task_description input{
+    font-family: 'Courgette', cursive;
+    display: block;
+    margin-top: 10px;
+    width: 400px;
+    border: 1px solid #fff;
+    background-color: transparent;
+    color: #fff;
+    border-radius: 8px;
+    padding: 5px 10px;
+}
+
+.task_description p{
+    font-size: 20px;
+}

@@ -9,12 +9,12 @@ const SidebarCategories = ({categoriesList, parentId}) => {
 
   return (
 
-      <ul style={{ paddingLeft: '30px' }}>
+      <ul style={{ paddingLeft: '20px' }}>
       {categoriesList
         .filter(item => item.parentId === parentId)
         .map(item => (
-          <li>
-            <SidebarCategoryItem itemCategory={item} key={item.id} />
+          <li key={item.id} >
+            <SidebarCategoryItem itemCategory={item} />
             <SidebarCategories categoriesList={categoriesList} parentId={item.id}/>
           </li>
       ))}

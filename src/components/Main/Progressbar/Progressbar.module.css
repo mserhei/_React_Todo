@@ -1,0 +1,19 @@
+.full_line {
+    width: 100%;
+    background-color: silver;
+    border-radius: 15px;
+}
+
+.completed_line {
+    height: 100%;
+    border-radius: inherit;
+    text-align: right;
+    transition: 1s all ease;
+}
+
+.completed_percent {
+    display: block;
+    padding: 3px 20px;
+    color: white;
+    font-weight: bold;
+}

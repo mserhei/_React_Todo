@@ -6,6 +6,7 @@ import {setCategoryIdList} from '../../../../../redux/actions';
 import {addCategory} from '../../../../../redux/actions';
 import {changeCategoryName} from '../../../../../redux/actions';
 import {deleteCategoryById} from '../../../../../redux/actions';
+import {createTask} from '../../../../../redux/actions';
 
 import s from "./SidebarCategoryItem.module.css";
 
@@ -35,7 +36,8 @@ function SidebarCategoryItem({ itemCategory}) {
 
   // CREATE NESTED TASK
 
-  let [isVisibleCreateTask, setIsVisibleCreateTask] = useState('display_none')
+  let [isVisibleCreateTask, setIsVisibleCreateTask] = useState('display_none');
+  let [titleCreateTask, setTitleCreateTask] = useState('');
 
   function showCreateTask () {
     setIsVisibleCreateTask('display_flex')
@@ -43,6 +45,18 @@ function SidebarCategoryItem({ itemCategory}) {
 
   function hideCreateTask () {
     setIsVisibleCreateTask('display_none')
+    setTitleCreateTask(``);
+  }
+
+  function newCreateTask () {
+    const newId = uuid();
+
+    dispatch(createTask({
+      id: newId,
+      title: titleCreateTask,
+      completed: false,
+      idCategoriesList: itemCategory.idList,
+    }))
   }
 
   // CREATE NESTED CATEGORY
@@ -121,7 +135,9 @@ function SidebarCategoryItem({ itemCategory}) {
     <div className={`${s.category_item} ${s[isVisible]}`}>
       <div className={s.category_main_block}>
         <div>
-          <div onClick={() => dispatchIdList()}>
+          <div 
+            className={s.category_name_block}
+            onClick={() => dispatchIdList()}>
             {itemCategory.title}
           </div>
         </div> 
@@ -129,21 +145,25 @@ function SidebarCategoryItem({ itemCategory}) {
         <div >
 
           <button 
-             className={s.category_button}
+            title='add new task'
+            className={s.category_button}
             onClick={() => showCreateTask()}>
             <i className='far fa-calendar-plus'></i>
           </button>
           <button
+            title='add new nested category'
             className={s.category_button}
             onClick={() => showCreateCategory()}>
-            <i class='fas fa-calendar-plus'></i>
+            <i className='fas fa-calendar-plus'></i>
           </button>
           <button
+            title='edit category'
             className={s.category_button}
             onClick={() => showEditCategory()}>
             <i className='fas fa-edit'></i>
           </button>
           <button
+            title='delete category'
             className={s.category_button}
             onClick={() => showCheckDeletion()}>
             <i className='fas fa-trash-alt'></i>
@@ -154,16 +174,17 @@ function SidebarCategoryItem({ itemCategory}) {
 
       <div className={s[isVisibleCreateTask]}>
         <form
-          onSubmit={(event) => {event.preventDefault(); hideCreateTask()}}
+          onSubmit={(event) => {event.preventDefault(); newCreateTask(); hideCreateTask()}}
           className={s.create_nested_task_form}
         > 
           <button 
             type='button'
             onClick={() => hideCreateTask()}
             className={s.create_nested_task_button_cancel}
-          >cancel</button>
+          ><i className="fas fa-times"></i></button>
           <input
-            // value={itemState.title}
+            value={titleCreateTask}
+            onChange={(event) => setTitleCreateTask(event.target.value)}
             className={s.create_nested_task_input}
             type="text"
             placeholder="new nested task title"
@@ -171,7 +192,7 @@ function SidebarCategoryItem({ itemCategory}) {
           <button 
             type='submit'
             className={s.create_nested_task_button_add}
-          >add</button>
+          ><i className="fas fa-check"></i></button>
         </form>
       </div>
 
@@ -184,7 +205,7 @@ function SidebarCategoryItem({ itemCategory}) {
             onClick={() => hideCreateCategory()}
             type='button'
             className={s.create_nested_category_button_cancel}
-          >cancel</button>
+          ><i className="fas fa-times"></i></button>
           <input
             value={titleCreateCaregory}
             onChange={(event) => setTitleCreateCategory(event.target.value)}
@@ -195,7 +216,7 @@ function SidebarCategoryItem({ itemCategory}) {
           <button 
             type='submit'
             className={s.create_nested_category_button_add}
-          >add</button>
+          ><i className="fas fa-check"></i></button>
         </form>
       </div>
 
@@ -208,7 +229,7 @@ function SidebarCategoryItem({ itemCategory}) {
             type='button'
             onClick={() => hideEditCategory()}
             className={s.change_category_name_button_cancel}
-          >cancel</button>
+          ><i className="fas fa-times"></i></button>
           <input
             value={newCategoryTitle}
             onChange={(event) => setNewCategoryTitle(event.target.value)}
@@ -219,11 +240,12 @@ function SidebarCategoryItem({ itemCategory}) {
           <button 
             type='submit'
             className={s.change_category_name_button_change}
-          >change</button>
+          ><i className="fas fa-check"></i></button>
         </form>
       </div>
 
-      <div className={`${s[isVisibleCheckDeletion]} ${s.check_deletion_block}`}>
+      <div 
+        className={`${s[isVisibleCheckDeletion]} ${s.check_deletion_block}`}>
         <div className={s.check_category_deletion_question}>
           <p>this will remove all nested categories and tasks. are you sure?</p>
         </div>
@@ -232,11 +254,11 @@ function SidebarCategoryItem({ itemCategory}) {
           <button 
             onClick={() => hideCheckDeletion()}
             className={s.check_category_deletion_button_no}
-          >no</button>
+          ><i className="fas fa-times"></i></button>
           <button 
             onClick={() => {hideCheckDeletion(); deleteCategory()}}
             className={s.check_category_deletion_button_yes}
-          >yes</button>
+          ><i className="fas fa-check"></i></button>
         </div>
         
 

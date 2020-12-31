@@ -10,7 +10,6 @@ const initialState = {
       { id: 311, parentId: 31, title: "Category 3.1.1", parentIdList: [null, 3, 31], idList: [null, 3, 31, 311]},
       { id: 32, parentId: 3, title: "Category 3.2", parentIdList: [null, 3], idList: [null, 3, 32]},
       { id: 33, parentId: 3, title: "Category 3.3", parentIdList: [null, 3], idList: [null, 3, 33]},
-      
       { id: 11, parentId: 1, title: "Category 1.1", parentIdList: [null, 1], idList: [null, 1, 11]}
       ]
 }

@@ -1,12 +1,10 @@
 import React from 'react';
-import ContentTextInputWithButton from './ContentTextInputWithButton/ContentTextInputWithButton'
 import ContentTasks from './ContentTasks/ContentTasks';
 
-function Content () {
+function Content ({openModal}) {
     return (
         <div>
-            <ContentTextInputWithButton/>
-            <ContentTasks />
+            <ContentTasks openModal={openModal}/>
         </div>
     )
 }
