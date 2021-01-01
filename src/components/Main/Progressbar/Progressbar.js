@@ -5,9 +5,11 @@ import s from './Progressbar.module.css';
 
 function Progressbar () {
 
+
     const tasks = useSelector(state => {
-        const allTasks = state.tasks.tasks;
-        const categoryIdList = state.categoryIdList.categoryIdList;
+        const allTasks = state.tasks;
+
+        const categoryIdList = state.categoryIdList;
         
         return allTasks.filter(task => task.idCategoriesList.includes(categoryIdList[categoryIdList.length - 1]))
     })
@@ -39,7 +41,7 @@ function Progressbar () {
                 tasksCompletedCount = tasksCompletedCount + 1;
             }
         }
-        setCompletion(Math.round(tasksCompletedCount/tasksCount * 100));
+        setCompletion(Math.round(tasksCount ? tasksCompletedCount/tasksCount * 100 : 0));
     }
 
     useEffect(() => {

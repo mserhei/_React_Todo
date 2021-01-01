@@ -1,4 +1,3 @@
-
 import React, {useEffect, useState} from "react";
 import {useSelector, useDispatch} from 'react-redux';
 import uuid from 'react-uuid';
@@ -12,7 +11,7 @@ import s from "./SidebarCategoryItem.module.css";
 
 function SidebarCategoryItem({ itemCategory}) {
 
-  let categoryIdList  = useSelector(state => state.categoryIdList.categoryIdList);
+  let categoryIdList  = useSelector(state => state.categoryIdList);
   const dispatch = useDispatch();
 
   // CATEGORIES MAPPING

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {useSelector} from 'react-redux';
 
 import ContentTask from "./ContentTask/ContentTask";
@@ -6,9 +6,9 @@ import s from "./ContentTasks.module.css";
 
 const ContentTasks = ({openModal}) => {
 
-  let categoryIdList = useSelector(state => state.categoryIdList.categoryIdList);
-  let allTasks = useSelector(state => state.tasks.tasks);
-  let searchData = useSelector(state => state.searchData.searchData);
+  let categoryIdList = useSelector(state => state.categoryIdList);
+  let allTasks = useSelector(state => state.tasks);
+  let searchData = useSelector(state => state.searchData);
 
   if (!allTasks.length) {
     return (

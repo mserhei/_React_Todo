@@ -40,7 +40,7 @@ const ContentTask = ({ task, openModal }) => {
 
         <button 
           type='button'
-            onClick={(event) => {toggleCompletionTask()}}
+            onClick={() => {toggleCompletionTask()}}
           className={s.completed_button}
         >
           {task.completed ? <i className={`far fa-check-circle ${s.completed_input1}`}></i> : <i className={`far fa-circle ${s.completed_input0}`}></i>} 

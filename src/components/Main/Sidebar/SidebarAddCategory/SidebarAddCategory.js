@@ -1,24 +1,27 @@
 import React,{useState} from "react";
-import {connect} from 'react-redux';
-import {addCategory} from '../../../../redux/actions'
+import {useSelector, useDispatch} from 'react-redux';
+import {addCategory} from '../../../../redux/actions';
 
 import s from "./SidebarAddCategory.module.css";
 
-const SidebarAddCategory = (allCategories) => {
+function SidebarAddCategory () {
+
+  const allCategories = useSelector(state => state.categoriesList);
+
+  const dispatch = useDispatch();
 
   const [title, setTitle] = useState(``);
 
   function createCategory() {
     if(title) {
-      allCategories.addCategory({
+      dispatch(addCategory({
         parentId: null,
-        id: allCategories.allCategories.length,
+        id: allCategories.length,
         title: title,
         parentIdList: [null], 
-        idList: [null, allCategories.allCategories.length]
-      })
+        idList: [null, allCategories.length]
+      }))
     }
-      
   }
 
   return (
@@ -39,14 +42,4 @@ const SidebarAddCategory = (allCategories) => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    allCategories: state.categoriesList.categoriesList
-  }
-}
-
-const mapDispatchToProps = {
-  addCategory
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(SidebarAddCategory);
+export default SidebarAddCategory;
