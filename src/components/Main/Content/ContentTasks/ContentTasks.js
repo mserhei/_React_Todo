@@ -2,18 +2,19 @@ import React from "react";
 import {useSelector} from 'react-redux';
 
 import ContentTask from "./ContentTask/ContentTask";
+
 import s from "./ContentTasks.module.css";
 
 const ContentTasks = ({openModal}) => {
 
-  let categoryIdList = useSelector(state => state.categoryIdList);
-  let allTasks = useSelector(state => state.tasks);
-  let searchData = useSelector(state => state.searchData);
+  const categoryIdList = useSelector(state => state.categoryIdList);
+  const allTasks = useSelector(state => state.tasks);
+  const searchData = useSelector(state => state.searchData);
 
   if (!allTasks.length) {
     return (
       <div className={s.content_tasks}>
-        <p>No tasks</p>
+        <p className={s.message_no_categories}>there are no tasks for some reasons. you can create them in the "Categoies" area on the left...</p>
       </div>
     );
   };

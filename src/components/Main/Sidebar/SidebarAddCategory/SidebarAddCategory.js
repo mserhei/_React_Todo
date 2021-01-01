@@ -7,9 +7,7 @@ import s from "./SidebarAddCategory.module.css";
 function SidebarAddCategory () {
 
   const allCategories = useSelector(state => state.categoriesList);
-
   const dispatch = useDispatch();
-
   const [title, setTitle] = useState(``);
 
   function createCategory() {

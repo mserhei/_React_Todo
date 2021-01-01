@@ -14,6 +14,7 @@ const initialState = [
   {
     id: 1,
     title: `Task for category 1.1`,
+    description: '',
     completed: false,
     idCategoriesList: [null, 1, 11],
   },

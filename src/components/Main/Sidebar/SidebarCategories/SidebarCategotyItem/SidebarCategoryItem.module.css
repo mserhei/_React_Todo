@@ -16,7 +16,6 @@
     margin-top: 0px;
 }
 
-
 .category_main_block {
     display: flex;
     flex-direction: row;
@@ -33,7 +32,6 @@
     border: none;
     padding: 5px 10px;
     border-right: 1px solid #dddddd;
-
 }
 
 .category_button:last-of-type {

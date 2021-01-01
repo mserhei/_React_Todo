@@ -23,15 +23,14 @@ function SidebarCategoryItem({ itemCategory}) {
   }
 
   useEffect(() => {
-
     setIsVisible(`display_none`);
 
-    for(let i = 0; i < itemCategory.parentIdList.length; i++) {
-      if (itemCategory.parentIdList[itemCategory.parentIdList.length - 1] === categoryIdList[i]) {
+    for(let i = 0; i < itemCategory.idList.length; i++) {
+      if (itemCategory.idList[itemCategory.idList.length - 2] === categoryIdList[i]) {
           setIsVisible(`display_flex`)
         }
       }
-    }, [categoryIdList, itemCategory.parentIdList]);
+    }, [categoryIdList, itemCategory.idList]);
 
   // CREATE NESTED TASK
 
@@ -53,6 +52,7 @@ function SidebarCategoryItem({ itemCategory}) {
     dispatch(createTask({
       id: newId,
       title: titleCreateTask,
+      description: '',
       completed: false,
       idCategoriesList: itemCategory.idList,
     }))
@@ -77,12 +77,10 @@ function SidebarCategoryItem({ itemCategory}) {
     const newId = uuid();
 
     if(titleCreateCaregory) {
-
       dispatch(addCategory({
         id: newId,
         parentId: itemCategory.id,
         title: titleCreateCaregory,
-        parentIdList: [...itemCategory.parentIdList, itemCategory.id],
         idList: [...itemCategory.idList, newId],
       }))
     }  
@@ -127,8 +125,6 @@ function SidebarCategoryItem({ itemCategory}) {
         deletedIdList: itemCategory.idList,
       }));
   }
-
-  
 
   return (
     <div className={`${s.category_item} ${s[isVisible]}`}>

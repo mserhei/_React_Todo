@@ -5,12 +5,9 @@ import s from './Progressbar.module.css';
 
 function Progressbar () {
 
-
     const tasks = useSelector(state => {
         const allTasks = state.tasks;
-
         const categoryIdList = state.categoryIdList;
-        
         return allTasks.filter(task => task.idCategoriesList.includes(categoryIdList[categoryIdList.length - 1]))
     })
 

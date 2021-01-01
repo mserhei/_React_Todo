@@ -16,12 +16,9 @@ function Main ({openModal}) {
             <div className={s.sidebar_and_content}>
                 <Sidebar/>
                 <Content openModal={openModal}/>
-            </div>
-            
+            </div>  
         </main>
     )
 }
-
-
 
 export default Main;

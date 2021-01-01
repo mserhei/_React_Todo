@@ -8,8 +8,6 @@ import s from "./ContentTask.module.css";
 
 const ContentTask = ({ task, openModal }) => {
 
-  // console.log(`effect`)
-
   const dispatch = useDispatch();
   const [completed, setCompleted] = useState('');
   
