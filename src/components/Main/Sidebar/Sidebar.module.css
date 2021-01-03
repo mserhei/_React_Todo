@@ -6,3 +6,9 @@
 .sidebar_list {
     margin-top: 60px;
 }
+
+.message_no_categories {
+    display: block;
+    font-size: 16px;
+    padding: 0px 20px 20px;
+}

@@ -17,7 +17,7 @@ function Sidebar () {
 
             <div className={s.sidebar_list}>
                 {categoriesList.length === 0 ? 
-                    <p>there are no categories for some reasons. you can create them in the form above...</p> : 
+                    <p className={s.message_no_categories}>there are no categories for some reasons. you can create them in the form above...</p> : 
                     <SidebarCategories categoriesList={categoriesList} parentId={parentId}/>}
             </div>
 

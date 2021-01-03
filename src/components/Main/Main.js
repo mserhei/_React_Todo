@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Sidebar from './Sidebar/Sidebar';
 import Content from './Content/Content';
@@ -19,6 +20,10 @@ function Main ({openModal}) {
             </div>  
         </main>
     )
+}
+
+Main.propTypes = {
+    openModal: PropTypes.func.isRequired,
 }
 
 export default Main;

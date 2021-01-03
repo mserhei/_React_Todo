@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {useDispatch} from 'react-redux';
+import PropTypes from 'prop-types';
 
 import {toggleTaskCompletion} from './../../../../../redux/actions';
 import {removeTask} from './../../../../../redux/actions';
@@ -66,6 +67,21 @@ const ContentTask = ({ task, openModal }) => {
       </div>
   </div>
   )
+}
+
+ContentTask.propTypes = {
+  task: PropTypes.shape({
+    id: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.oneOf([null])
+    ]),
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    completed: PropTypes.bool.isRequired,
+    idCategoriesList: PropTypes.array.isRequired,
+  }),
+  openModal: PropTypes.func.isRequired,
 }
 
 export default ContentTask;

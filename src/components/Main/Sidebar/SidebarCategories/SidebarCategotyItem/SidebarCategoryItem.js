@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {useSelector, useDispatch} from 'react-redux';
 import uuid from 'react-uuid';
+import PropTypes from 'prop-types';
+
 import {setCategoryIdList} from '../../../../../redux/actions';
 import {addCategory} from '../../../../../redux/actions';
 import {changeCategoryName} from '../../../../../redux/actions';
@@ -256,11 +258,26 @@ function SidebarCategoryItem({ itemCategory}) {
           ><i className="fas fa-check"></i></button>
         </div>
         
-
       </div>
-      
     </div>
   );
+}
+
+SidebarCategoryItem.propTypes = {
+  itemCategory: PropTypes.shape({
+    id: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.oneOf([null]),
+    ]),
+    parentId: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.oneOf([null]),
+    ]),
+    title: PropTypes.string.isRequired,
+    idList: PropTypes.array.isRequired,
+  })
 }
 
 export default SidebarCategoryItem;

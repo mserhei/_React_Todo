@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { useDispatch } from 'react-redux';
 import Modal from 'react-modal';
+import PropTypes from 'prop-types';
 
 import {changeTask} from './../../redux/actions'
 
@@ -96,6 +97,25 @@ function ModalWindow ({taskForModal, isOpenedModal}) {
           </form>
         </Modal>
     )
+}
+
+ModalWindow.propTypes = {
+
+  taskForModal: PropTypes.shape({
+    id: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+      PropTypes.oneOf([null])
+    ]),
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    completed: PropTypes.bool.isRequired,
+    idCategoriesList: PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.oneOf([null]),
+    ])
+  }).isRequired,
+  isOpenedModal: PropTypes.bool.isRequired,
 }
 
 export default ModalWindow ;

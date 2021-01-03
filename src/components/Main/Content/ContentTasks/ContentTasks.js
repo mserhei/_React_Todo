@@ -1,5 +1,6 @@
 import React from "react";
 import {useSelector} from 'react-redux';
+import PropTypes from 'prop-types';
 
 import ContentTask from "./ContentTask/ContentTask";
 
@@ -10,14 +11,6 @@ const ContentTasks = ({openModal}) => {
   const categoryIdList = useSelector(state => state.categoryIdList);
   const allTasks = useSelector(state => state.tasks);
   const searchData = useSelector(state => state.searchData);
-
-  if (!allTasks.length) {
-    return (
-      <div className={s.content_tasks}>
-        <p className={s.message_no_categories}>there are no tasks for some reasons. you can create them in the "Categoies" area on the left...</p>
-      </div>
-    );
-  };
 
   return (
     <div className={s.content_tasks}>
@@ -35,6 +28,10 @@ const ContentTasks = ({openModal}) => {
       ))}
     </div>    
   );
+}
+
+ContentTask.propTypes = {
+  openModal: PropTypes.func.isRequired,
 }
 
 export default ContentTasks;

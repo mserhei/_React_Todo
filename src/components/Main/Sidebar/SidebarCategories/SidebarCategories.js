@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 import SidebarCategoryItem from "./SidebarCategotyItem/SidebarCategoryItem";
 
@@ -18,5 +19,14 @@ const SidebarCategories = ({categoriesList, parentId}) => {
       </ul>
   );
 };
+
+SidebarCategories.propTypes = {
+  categoriesList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  parentId: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.oneOf([null]),
+  ]),
+}
 
 export default SidebarCategories;
