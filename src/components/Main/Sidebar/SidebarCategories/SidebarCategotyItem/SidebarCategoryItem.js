@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef} from "react";
 import {useSelector, useDispatch} from 'react-redux';
 import uuid from 'react-uuid';
 import PropTypes from 'prop-types';
@@ -11,7 +11,7 @@ import {createTask} from '../../../../../redux/actions';
 
 import s from "./SidebarCategoryItem.module.css";
 
-function SidebarCategoryItem({ itemCategory}) {
+function SidebarCategoryItem({ itemCategory, clickTarget}) {
 
   let categoryIdList  = useSelector(state => state.categoryIdList);
   const dispatch = useDispatch();
@@ -36,41 +36,56 @@ function SidebarCategoryItem({ itemCategory}) {
 
   // CREATE NESTED TASK
 
-  let [isVisibleCreateTask, setIsVisibleCreateTask] = useState('display_none');
+  const [isOpenCreateTask, setIsOpenCreateTask] = useState(false);
+
   let [titleCreateTask, setTitleCreateTask] = useState('');
 
   function showCreateTask () {
-    setIsVisibleCreateTask('display_flex')
+    setIsOpenCreateTask(true)
   }
 
   function hideCreateTask () {
-    setIsVisibleCreateTask('display_none')
+    setIsOpenCreateTask(false)
     setTitleCreateTask(``);
   }
 
   function newCreateTask () {
     const newId = uuid();
 
-    dispatch(createTask({
-      id: newId,
-      title: titleCreateTask,
-      description: '',
-      completed: false,
-      idCategoriesList: itemCategory.idList,
-    }))
+    if(titleCreateTask) {
+      dispatch(createTask({
+        id: newId,
+        title: titleCreateTask,
+        description: '',
+        completed: false,
+        idCategoriesList: itemCategory.idList,
+      }))
+    }
   }
+
+  // CREATE NESTED TASK - AUTO CLOSING
+
+  const refCreateTask = useRef();
+ 
+  useEffect(() => {
+      if (refCreateTask.current !== undefined && refCreateTask.current !== null) {
+        if(!refCreateTask.current.contains(clickTarget)) {
+          setIsOpenCreateTask(false)
+        }
+      }
+  }, [clickTarget]);
 
   // CREATE NESTED CATEGORY
 
-  let [isVisibleCreateCategory, setIsVisibleCreateCategory] = useState('display_none')
+  let [isOpenCreateCategory, setIsOpenCreateCategory] = useState(false);
   const [titleCreateCaregory, setTitleCreateCategory] = useState(``);
 
   function showCreateCategory () {
-    setIsVisibleCreateCategory('display_flex');
+    setIsOpenCreateCategory(true);
   }
 
   function hideCreateCategory () {
-    setIsVisibleCreateCategory('display_none');
+    setIsOpenCreateCategory(false);
     setTitleCreateCategory(``);
   }
 
@@ -88,17 +103,29 @@ function SidebarCategoryItem({ itemCategory}) {
     }  
   }
 
+  // CREATE NESTED CATEGORY - AUTO CLOSING
+
+  const refCreateCategory = useRef();
+ 
+  useEffect(() => {
+      if (refCreateCategory.current !== undefined && refCreateCategory.current !== null) {
+        if(!refCreateCategory.current.contains(clickTarget)) {
+          setIsOpenCreateCategory(false)
+        }
+      }
+  }, [clickTarget]);
+
   // CHANGE CATEGORY TITLE
 
-  let [isVisibleEditCategory, setIsVisibleEditCategory] = useState('display_none');
+  let [isOpenEditCategory, setIsOpenEditCategory] = useState(false);
   let [newCategoryTitle, setNewCategoryTitle] = useState('');
 
   function showEditCategory () {
-    setIsVisibleEditCategory('display_flex')
+    setIsOpenEditCategory(true)
   }
 
   function hideEditCategory () {
-    setIsVisibleEditCategory('display_none')
+    setIsOpenEditCategory(false)
   }
 
   function changeCategoryTitle() {
@@ -110,16 +137,28 @@ function SidebarCategoryItem({ itemCategory}) {
     } 
   }
 
+  // CHANGE CATEGORY TITLE -AUTO CLOSING
+
+  const refEditCategory = useRef();
+ 
+  useEffect(() => {
+      if (refEditCategory.current !== undefined && refEditCategory.current !== null) {
+        if(!refEditCategory.current.contains(clickTarget)) {
+          setIsOpenEditCategory(false)
+        }
+      }
+  }, [clickTarget]);
+
   // CHECK CATEGORY DELETION
 
-  let [isVisibleCheckDeletion, setIsVisibleCheckDeletion] = useState('display_none');
+  let [isOpenCheckDeletion, setIsOpenCheckDeletion] = useState(false);
 
   function showCheckDeletion () {
-    setIsVisibleCheckDeletion('display_flex')
+    setIsOpenCheckDeletion(true)
   }
 
   function hideCheckDeletion () {
-    setIsVisibleCheckDeletion('display_none')
+    setIsOpenCheckDeletion(false);
   }
 
   function deleteCategory () {
@@ -128,8 +167,24 @@ function SidebarCategoryItem({ itemCategory}) {
       }));
   }
 
+  // CATCHING CLICK TO CLOSE FORMs
+
+  const refDeleteCategory = useRef();
+
+  useEffect(() => {
+    if (refDeleteCategory.current !== undefined && refDeleteCategory.current !== null) {
+      if(!refDeleteCategory.current.contains(clickTarget)) {
+        setIsOpenCheckDeletion(false)
+      }
+    }
+}, [clickTarget]);
+  
+
+
+
   return (
-    <div className={`${s.category_item} ${s[isVisible]}`}>
+    <div
+      className={`${s.category_item} ${s[isVisible]}`}>
       <div className={s.category_main_block}>
         <div>
           <div 
@@ -169,96 +224,103 @@ function SidebarCategoryItem({ itemCategory}) {
         </div>
       </div>
 
-      <div className={s[isVisibleCreateTask]}>
-        <form
-          onSubmit={(event) => {event.preventDefault(); newCreateTask(); hideCreateTask()}}
-          className={s.create_nested_task_form}
-        > 
-          <button 
-            type='button'
-            onClick={() => hideCreateTask()}
-            className={s.create_nested_task_button_cancel}
-          ><i className="fas fa-times"></i></button>
-          <input
-            value={titleCreateTask}
-            onChange={(event) => setTitleCreateTask(event.target.value)}
-            className={s.create_nested_task_input}
-            type="text"
-            placeholder="new nested task title"
-          />
-          <button 
-            type='submit'
-            className={s.create_nested_task_button_add}
-          ><i className="fas fa-check"></i></button>
-        </form>
-      </div>
-
-      <div className={s[isVisibleCreateCategory]}>
-        <form 
-          onSubmit={(event) => {event.preventDefault(); hideCreateCategory(); createNestedCategory()}}
-          className={s.create_nested_category_form}
-        > 
-          <button 
-            onClick={() => hideCreateCategory()}
-            type='button'
-            className={s.create_nested_category_button_cancel}
-          ><i className="fas fa-times"></i></button>
-          <input
-            value={titleCreateCaregory}
-            onChange={(event) => setTitleCreateCategory(event.target.value)}
-            className={s.create_nested_category_input}
-            type="text"
-            placeholder="new nested category title"
-          />
-          <button 
-            type='submit'
-            className={s.create_nested_category_button_add}
-          ><i className="fas fa-check"></i></button>
-        </form>
-      </div>
-
-      <div className={s[isVisibleEditCategory]}>
-        <form 
-          onSubmit={(event) => {event.preventDefault(); changeCategoryTitle(); hideEditCategory()}}
-          className={s.change_category_name_form}
-        >
-          <button 
-            type='button'
-            onClick={() => hideEditCategory()}
-            className={s.change_category_name_button_cancel}
-          ><i className="fas fa-times"></i></button>
-          <input
-            value={newCategoryTitle}
-            onChange={(event) => setNewCategoryTitle(event.target.value)}
-            className={s.change_category_name_input}
-            type="text"
-            placeholder="change category name"
-          />
-          <button 
-            type='submit'
-            className={s.change_category_name_button_change}
-          ><i className="fas fa-check"></i></button>
-        </form>
-      </div>
-
-      <div 
-        className={`${s[isVisibleCheckDeletion]} ${s.check_deletion_block}`}>
-        <div className={s.check_category_deletion_question}>
-          <p>this will remove all nested categories and tasks. are you sure?</p>
+      {isOpenCreateTask ? 
+        <div ref={refCreateTask}>
+          <form
+            onSubmit={(event) => {event.preventDefault(); newCreateTask(); hideCreateTask()}}
+            className={s.create_nested_task_form}
+          > 
+            <button 
+              type='button'
+              onClick={() => hideCreateTask()}
+              className={s.create_nested_task_button_cancel}
+            ><i className="fas fa-times"></i></button>
+            <input
+              value={titleCreateTask}
+              onChange={(event) => setTitleCreateTask(event.target.value)}
+              className={s.create_nested_task_input}
+              type="text"
+              placeholder="new nested task title"
+            />
+            <button 
+              type='submit'
+              className={s.create_nested_task_button_add}
+            ><i className="fas fa-check"></i></button>
+          </form>
         </div>
-        
-        <div>
-          <button 
-            onClick={() => hideCheckDeletion()}
-            className={s.check_category_deletion_button_no}
-          ><i className="fas fa-times"></i></button>
-          <button 
-            onClick={() => {hideCheckDeletion(); deleteCategory()}}
-            className={s.check_category_deletion_button_yes}
-          ><i className="fas fa-check"></i></button>
+      : true}
+      
+      {isOpenCreateCategory ? 
+        <div ref={refCreateCategory}>
+          <form 
+            onSubmit={(event) => {event.preventDefault(); hideCreateCategory(); createNestedCategory()}}
+            className={s.create_nested_category_form}
+          > 
+            <button 
+              onClick={() => hideCreateCategory()}
+              type='button'
+              className={s.create_nested_category_button_cancel}
+            ><i className="fas fa-times"></i></button>
+            <input
+              value={titleCreateCaregory}
+              onChange={(event) => setTitleCreateCategory(event.target.value)}
+              className={s.create_nested_category_input}
+              type="text"
+              placeholder="new nested category title"
+            />
+            <button 
+              type='submit'
+              className={s.create_nested_category_button_add}
+            ><i className="fas fa-check"></i></button>
+          </form>
         </div>
+      : true}
+      
+      {isOpenEditCategory ? 
+        <div ref={refEditCategory}>
+          <form 
+            onSubmit={(event) => {event.preventDefault(); changeCategoryTitle(); hideEditCategory()}}
+            className={s.change_category_name_form}
+          >
+            <button 
+              type='button'
+              onClick={() => hideEditCategory()}
+              className={s.change_category_name_button_cancel}
+            ><i className="fas fa-times"></i></button>
+            <input
+              value={newCategoryTitle}
+              onChange={(event) => setNewCategoryTitle(event.target.value)}
+              className={s.change_category_name_input}
+              type="text"
+              placeholder="change category name"
+            />
+            <button 
+              type='submit'
+              className={s.change_category_name_button_change}
+            ><i className="fas fa-check"></i></button>
+          </form>
+        </div>
+      : true}
+      
+      {isOpenCheckDeletion ? 
+        <div ref={refDeleteCategory}>
+          <div className={s.check_category_deletion_question}>
+            <p>this will remove all nested categories and tasks. are you sure?</p>
+          </div>
         
-      </div>
+          <div>
+            <button 
+              onClick={() => hideCheckDeletion()}
+              className={s.check_category_deletion_button_no}
+            ><i className="fas fa-times"></i></button>
+            <button 
+              onClick={() => {hideCheckDeletion(); deleteCategory()}}
+              className={s.check_category_deletion_button_yes}
+            ><i className="fas fa-check"></i></button>
+          </div>
+        </div>
+      : true}
+      
     </div>
   );
 }

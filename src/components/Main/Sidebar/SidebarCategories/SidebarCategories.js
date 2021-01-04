@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import SidebarCategoryItem from "./SidebarCategotyItem/SidebarCategoryItem";
 
-const SidebarCategories = ({categoriesList, parentId}) => {
+const SidebarCategories = ({categoriesList, parentId, clickTarget}) => {
 
   return (
 
@@ -12,7 +12,7 @@ const SidebarCategories = ({categoriesList, parentId}) => {
           .filter(item => item.parentId === parentId)
           .map(item => (
             <li key={item.id} >
-              <SidebarCategoryItem itemCategory={item} />
+              <SidebarCategoryItem itemCategory={item} clickTarget={clickTarget}/>
               <SidebarCategories categoriesList={categoriesList} parentId={item.id}/>
             </li>
         ))}
