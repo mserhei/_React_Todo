@@ -13,7 +13,7 @@ const SidebarCategories = ({categoriesList, parentId, clickTarget}) => {
           .map(item => (
             <li key={item.id} >
               <SidebarCategoryItem itemCategory={item} clickTarget={clickTarget}/>
-              <SidebarCategories categoriesList={categoriesList} parentId={item.id}/>
+              <SidebarCategories categoriesList={categoriesList} parentId={item.id} clickTarget={clickTarget}/>
             </li>
         ))}
       </ul>

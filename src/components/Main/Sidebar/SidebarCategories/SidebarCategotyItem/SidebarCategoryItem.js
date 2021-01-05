@@ -70,7 +70,8 @@ function SidebarCategoryItem({ itemCategory, clickTarget}) {
   useEffect(() => {
       if (refCreateTask.current !== undefined && refCreateTask.current !== null) {
         if(!refCreateTask.current.contains(clickTarget)) {
-          setIsOpenCreateTask(false)
+          setIsOpenCreateTask(false);
+          setTitleCreateTask('');
         }
       }
   }, [clickTarget]);
@@ -110,7 +111,8 @@ function SidebarCategoryItem({ itemCategory, clickTarget}) {
   useEffect(() => {
       if (refCreateCategory.current !== undefined && refCreateCategory.current !== null) {
         if(!refCreateCategory.current.contains(clickTarget)) {
-          setIsOpenCreateCategory(false)
+          setIsOpenCreateCategory(false);
+          setTitleCreateCategory('');
         }
       }
   }, [clickTarget]);
@@ -144,7 +146,8 @@ function SidebarCategoryItem({ itemCategory, clickTarget}) {
   useEffect(() => {
       if (refEditCategory.current !== undefined && refEditCategory.current !== null) {
         if(!refEditCategory.current.contains(clickTarget)) {
-          setIsOpenEditCategory(false)
+          setIsOpenEditCategory(false);
+          setNewCategoryTitle('');
         }
       }
   }, [clickTarget]);
