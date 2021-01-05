@@ -48,7 +48,6 @@ function App() {
     }
 
     document.addEventListener('mousedown', updateClickTarget);
-
     return function cleanup () {
       document.removeEventListener('mousedown', updateClickTarget);
     }
