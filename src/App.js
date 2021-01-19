@@ -11,7 +11,6 @@ import {Provider} from 'react-redux';
 import {applyMiddleware, compose, createStore} from 'redux';
 import { rootReducer } from './redux/rootReducer';
 
-
 const logMiddleware = (store) => (next) => (action) => {
   next(action);
 };

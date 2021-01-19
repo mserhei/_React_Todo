@@ -26,27 +26,10 @@ export const categoriesListReducer = (state = initialState, action) => {
         }
 
         case DELETE_CATEGORY_BY_ID: {
-          let deletedItemsIndexArray = [];
-          
-          state.forEach(item => {
-            let counter = 0;
-            for (let i = 0; i < action.payload.deletedIdList.length; i++) {
-              if(item.idList.includes(action.payload.deletedIdList[i])) {
-                  counter = counter + 1;
-                }
-            }
-            if (counter === action.payload.deletedIdList.length) {
-              deletedItemsIndexArray.push(state.indexOf(item));
-            }
-          })
-          for (let i = 0; i < deletedItemsIndexArray.length; i++) {
-            delete state[deletedItemsIndexArray[i]];
-          }
-          
-          state = state.filter(item => {
-            return item !== String;
-          })
-          return state;
+
+        return  state.filter(
+          category => action.payload.deletedIdList.filter(
+            deletedIdListItem => !(category.idList.indexOf(deletedIdListItem) > -1)).length);
         }
 
         default: return state;

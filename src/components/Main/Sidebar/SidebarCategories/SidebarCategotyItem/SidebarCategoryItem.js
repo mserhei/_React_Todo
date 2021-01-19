@@ -7,6 +7,7 @@ import {setCategoryIdList} from '../../../../../redux/actions';
 import {addCategory} from '../../../../../redux/actions';
 import {changeCategoryName} from '../../../../../redux/actions';
 import {deleteCategoryById} from '../../../../../redux/actions';
+import {deleteTasksOfCategory} from '../../../../../redux/actions'
 import {createTask} from '../../../../../redux/actions';
 
 import s from "./SidebarCategoryItem.module.css";
@@ -170,6 +171,12 @@ function SidebarCategoryItem({ itemCategory, clickTarget}) {
       }));
   }
 
+  function  deleteNestedTasks () {
+    dispatch(deleteTasksOfCategory(
+      itemCategory.idList
+    ))
+  }
+
   // CATCHING CLICK TO CLOSE FORMs
 
   const refDeleteCategory = useRef();
@@ -182,9 +189,6 @@ function SidebarCategoryItem({ itemCategory, clickTarget}) {
     }
 }, [clickTarget]);
   
-
-
-
   return (
     <div
       className={`${s.category_item} ${s[isVisible]}`}>
@@ -317,7 +321,7 @@ function SidebarCategoryItem({ itemCategory, clickTarget}) {
               className={s.check_category_deletion_button_no}
             ><i className="fas fa-times"></i></button>
             <button 
-              onClick={() => {hideCheckDeletion(); deleteCategory()}}
+              onClick={() => {hideCheckDeletion(); deleteCategory(); deleteNestedTasks()}}
               className={s.check_category_deletion_button_yes}
             ><i className="fas fa-check"></i></button>
           </div>

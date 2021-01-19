@@ -3,14 +3,14 @@ import { useDispatch } from 'react-redux';
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
 
-import {changeTask} from './../../redux/actions'
+import {changeTask} from './../../redux/actions';
 
-import s from './ModalWindow.module.css'
-import modalStyles from './modalStyles'
+import s from './ModalWindow.module.css';
+import modalStyles from './modalStyles';
+
+Modal.setAppElement('#root');
 
 function ModalWindow ({taskForModal, isOpenedModal}) {
-
-  Modal.setAppElement('#root');
 
   // GETTING A TASK THROUGH PROPS
 

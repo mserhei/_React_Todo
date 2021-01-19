@@ -1,23 +1,27 @@
 import React,{useState} from "react";
-import {useSelector, useDispatch} from 'react-redux';
+import {useDispatch} from 'react-redux';
+
+import uuid from 'react-uuid';
+
 import {addCategory} from '../../../../redux/actions';
 
 import s from "./SidebarAddCategory.module.css";
 
 function SidebarAddCategory () {
 
-  const allCategories = useSelector(state => state.categoriesList);
   const dispatch = useDispatch();
   const [title, setTitle] = useState(``);
+
+  const newId = uuid();
 
   function createCategory() {
     if(title) {
       dispatch(addCategory({
         parentId: null,
-        id: allCategories.length,
+        id: newId,
         title: title,
         parentIdList: [null], 
-        idList: [null, allCategories.length]
+        idList: [null, newId]
       }))
     }
   }
