@@ -137,6 +137,7 @@ function SidebarCategoryItem({ itemCategory, clickTarget}) {
         categoryId: itemCategory.id,
         newCategoryTitle: newCategoryTitle,
       }));
+      setNewCategoryTitle('');
     } 
   }
 
@@ -187,16 +188,30 @@ function SidebarCategoryItem({ itemCategory, clickTarget}) {
         setIsOpenCheckDeletion(false)
       }
     }
-}, [clickTarget]);
-  
+  }, [clickTarget]);
+
+  // COLOR CHANGING AFTER CLICK
+
+  const [isCheckedCategory, setIsCheckedCategory] = useState(false);
+
+  useEffect(() => {
+    if(!itemCategory.idList.filter(idCategoty => !(categoryIdList.indexOf(idCategoty) > -1)).length) {
+      setIsCheckedCategory(true);
+    }
+    else {
+      setIsCheckedCategory(false);
+    }
+  })
+
   return (
     <div
-      className={`${s.category_item} ${s[isVisible]}`}>
+      className={`${s.category_item} ${s[isVisible]} ${isCheckedCategory ? s.checkedCategory : false}`}>
       <div className={s.category_main_block}>
         <div>
           <div 
             className={s.category_name_block}
-            onClick={() => dispatchIdList()}>
+            onClick={() => {dispatchIdList()}}
+            >
             {itemCategory.title}
           </div>
         </div> 
@@ -327,7 +342,6 @@ function SidebarCategoryItem({ itemCategory, clickTarget}) {
           </div>
         </div>
       : true}
-      
     </div>
   );
 }

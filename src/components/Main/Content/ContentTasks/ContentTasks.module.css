@@ -2,3 +2,9 @@
     padding: 1rem;
     margin-top: 60px;
 }
+
+.message_no_tasks {
+    display: block;
+    font-size: 16px;
+    padding-top: 12px;
+}

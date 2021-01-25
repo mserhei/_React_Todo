@@ -8,11 +8,10 @@ import s from './Content.module.css';
 
 function Content ({openModal}) {
 
-    const allTasks = useSelector(state => state.tasks)
+    // const allTasks = useSelector(state => state.tasks)
 
     return (
         <div>
-            {!allTasks.length ? <p className={s.message_no_tasks}>there are no tasks for some reasons. you can create them in the "Categoies" area on the left...</p> : true}
             <ContentTasks openModal={openModal}/>
         </div>
     )
